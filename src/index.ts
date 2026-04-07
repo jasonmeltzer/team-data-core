@@ -6,4 +6,7 @@ export type { StoredPR, StoredReview, StoredDeployment } from "./types/github.js
 export type { StoredLinearIssue, StoredLinearCycle, StoredLinearTeam } from "./types/linear.js";
 
 // GitHub
-export { fetchAndStorePRs, upsertPRs, upsertReviews, readPRs, readReviewsForPR, readReviewsForRepo } from "./github/index.js";
+export { fetchAndStorePRs, upsertPRs, upsertReviews, readPRs, readReviewsForPR, readReviewsForRepo, fetchAndStoreDeployments, upsertDeployments, readDeployments } from "./github/index.js";
+
+// Linear
+export { fetchAndStoreLinearIssues, fetchAndStoreLinearCycles, upsertLinearIssues, upsertLinearCycles, upsertLinearTeam, readLinearIssues, readLinearCycles, readLinearTeams } from "./linear/index.js";
