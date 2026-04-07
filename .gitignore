@@ -2,3 +2,4 @@ node_modules/
 dist/
 *.db
 .env*
+team-data-core-0.1.0.tgz
