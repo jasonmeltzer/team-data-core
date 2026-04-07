@@ -29,7 +29,13 @@ From your project root, add `team-data-core` as a file dependency:
 npm install
 ```
 
-Because `team-data-core` uses `better-sqlite3` (native Node.js bindings), Turbopack cannot follow symlinks for packages outside the project root. Copy the dist files directly into `node_modules`:
+Then ensure transitive dependencies are installed. Even if you only use query functions (read path), the CJS bundle imports all modules at load time, so `octokit` and `better-sqlite3` must be resolvable:
+
+```bash
+npm install octokit better-sqlite3
+```
+
+**Turbopack symlink workaround:** Turbopack (Next.js bundler) rejects modules whose real path is outside the project root. `npm link` creates symlinks that fail this check. Copy the dist files directly into `node_modules` instead:
 
 ```bash
 mkdir -p node_modules/team-data-core

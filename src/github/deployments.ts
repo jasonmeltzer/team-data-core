@@ -39,7 +39,7 @@ export function readDeployments(
   }
 
   if (environment != null) {
-    conditions.push("environment = ?");
+    conditions.push("LOWER(environment) = LOWER(?)");
     params.push(environment);
   }
 
@@ -143,7 +143,7 @@ async function fetchDeploymentsAPI(
         id: `${owner}/${repo}#deploy-${d.id}`,
         repo,
         owner,
-        environment: d.environment,
+        environment: d.environment.toLowerCase(),
         status,
         sha: d.sha,
         ref: d.ref,
