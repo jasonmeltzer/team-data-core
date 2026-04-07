@@ -8,8 +8,8 @@ A shared package for fetching GitHub and Linear data into a SQLite database that
 
 `team-data-core` provides a two-step data pipeline:
 
-1. **Write path (fetch-and-store):** An upstream application (e.g., `team-health-dashboard`) fetches data from GitHub and Linear APIs and stores it in a shared SQLite database.
-2. **Read path (query functions):** Downstream applications (e.g., `ai-org-copilot`) read from the same database using typed query functions — no API credentials needed.
+1. **Write path (fetch-and-store):** A consuming application fetches data from GitHub and Linear APIs and stores it in a shared SQLite database.
+2. **Read path (query functions):** Any application can read from the same database using typed query functions — no API credentials needed for reads.
 
 Both applications share the same database file, configured via the `TEAM_DATA_DB` environment variable or the `dbPath` parameter.
 
@@ -334,8 +334,7 @@ All 6 tables are created in a single `initSchema` call when `getSharedDb` is fir
 | DB | Owner | Tables | Purpose |
 |----|-------|--------|---------|
 | `~/.local/share/team-data/data.db` (or `TEAM_DATA_DB`) | `team-data-core` | `pull_requests`, `reviews`, `deployments`, `linear_issues`, `linear_cycles`, `linear_teams` | Cross-app shared raw data |
-| `data/health.db` | `team-health-dashboard` | `health_snapshots`, `cycle_snapshots` | App-specific score persistence |
-| `dev.db` | `ai-org-copilot` | Prisma-managed schema | App-specific state |
+| App-specific DB | Each consuming app | App-specific tables (scores, cache, etc.) | Not shared — each app manages its own |
 
 ### Key Design Decisions
 
@@ -343,7 +342,7 @@ All 6 tables are created in a single `initSchema` call when `getSharedDb` is fir
 
 **No caching in the package:** Query functions open the DB, run a query, and return results. Server-side caching (TTL, stale-while-revalidate) is implemented in the consuming application's cache layer.
 
-**`caused_incident` is app-managed:** The `deployments.caused_incident` column defaults to 0. The `team-health-dashboard` DORA module sets it to 1 via a direct `better-sqlite3` write after incident correlation. This avoids tightly coupling incident logic to the shared package.
+**`caused_incident` is app-managed:** The `deployments.caused_incident` column defaults to 0. Consuming apps can set it to 1 via a direct `better-sqlite3` write after their own incident correlation logic. This avoids tightly coupling incident detection to the shared package.
 
 **DB singleton on `globalThis`:** `getSharedDb` maintains a singleton at `globalThis.__teamDataDb` so that WAL mode + busy_timeout are applied once per process. In Next.js dev mode with fast refresh, this prevents re-opening the file on every hot reload.
 

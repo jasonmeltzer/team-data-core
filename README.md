@@ -10,10 +10,7 @@ Shared data fetching and SQLite storage for engineering tools. Pulls data from G
 
 ## Who uses it
 
-| App | Role |
-|-----|------|
-| [team-health-dashboard](https://github.com/jasonmeltzer/team-health-dashboard) | Fetches data (write path) + reads for metrics computation |
-| [ai-org-copilot](https://github.com/jasonmeltzer/ai-org-copilot) | Reads shared data (read path) for AI analysis |
+Any engineering tool that needs GitHub or Linear data. Consuming apps can write (fetch from APIs and store), read (query stored data), or both. Multiple apps share the same database file — data written by one app is immediately available to all others.
 
 ## Tech stack
 
