@@ -10,3 +10,7 @@ export { fetchAndStorePRs, upsertPRs, upsertReviews, readPRs, readReviewsForPR, 
 
 // Linear
 export { fetchAndStoreLinearIssues, fetchAndStoreLinearCycles, upsertLinearIssues, upsertLinearCycles, upsertLinearTeam, readLinearIssues, readLinearCycles, readLinearTeams } from "./linear/index.js";
+
+// Sync
+export { syncAll } from "./sync.js";
+export type { SyncOptions, SyncResult, SyncGitHubConfig, SyncLinearConfig } from "./sync.js";
