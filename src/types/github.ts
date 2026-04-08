@@ -24,6 +24,7 @@ export interface StoredReview {
   avatar_url: string | null;
   state: string;
   submitted_at: string;
+  fetched_at: string;
 }
 
 export interface StoredDeployment {

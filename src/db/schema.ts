@@ -30,6 +30,7 @@ export function initSchema(db: Database.Database): void {
       avatar_url   TEXT,
       state        TEXT NOT NULL,
       submitted_at TEXT NOT NULL,
+      fetched_at   TEXT NOT NULL DEFAULT '',
       FOREIGN KEY (pr_id) REFERENCES pull_requests(id)
     );
     CREATE INDEX IF NOT EXISTS idx_reviews_pr ON reviews(pr_id);
