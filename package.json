@@ -12,11 +12,12 @@
     }
   },
   "scripts": {
-    "build": "tsup",
-    "prepare": "tsup",
+    "build": "npm test && tsup",
+    "prepare": "npm test && tsup",
     "dev": "tsup --watch",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "test:integration": "vitest run tests/integration/"
   },
   "dependencies": {
     "better-sqlite3": "^12.8.0",
