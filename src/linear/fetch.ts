@@ -86,7 +86,7 @@ export async function fetchAndStoreLinearIssues(
     // eslint-disable-next-line no-await-in-loop
     const page: IssueQueryResult = await linearQuery<IssueQueryResult>(
       apiKey,
-      `query($teamId: String!, $since: DateTimeOrDuration!, $cursor: String) {
+      `query($teamId: ID!, $since: DateTimeOrDuration!, $cursor: String) {
         issues(
           first: 100,
           after: $cursor,
@@ -159,7 +159,7 @@ export async function fetchAndStoreLinearCycles(
     `query($teamId: String!) {
       team(id: $teamId) {
         id name key
-        cycles(first: 50, orderBy: { field: createdAt, direction: Descending }) {
+        cycles(first: 50, orderBy: updatedAt) {
           nodes { id name number startsAt endsAt progress }
         }
       }
