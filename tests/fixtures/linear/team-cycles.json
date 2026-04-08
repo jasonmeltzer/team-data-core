@@ -1,0 +1,29 @@
+{
+  "data": {
+    "team": {
+      "id": "team-abc",
+      "name": "Engineering",
+      "key": "ENG",
+      "cycles": {
+        "nodes": [
+          {
+            "id": "cycle-001",
+            "name": "Sprint 10",
+            "number": 10,
+            "startsAt": "2026-03-31T00:00:00Z",
+            "endsAt": "2026-04-14T00:00:00Z",
+            "progress": 0.45
+          },
+          {
+            "id": "cycle-002",
+            "name": "Sprint 9",
+            "number": 9,
+            "startsAt": "2026-03-17T00:00:00Z",
+            "endsAt": "2026-03-31T00:00:00Z",
+            "progress": 1.0
+          }
+        ]
+      }
+    }
+  }
+}
