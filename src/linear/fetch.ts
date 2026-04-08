@@ -17,14 +17,15 @@ async function linearQuery<T>(
     body: JSON.stringify({ query, variables }),
   });
 
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`Linear API error: ${res.status} ${text}`);
+  }
   const json = await res.json() as { data?: T; errors?: Array<{ message: string }> };
   if (json.errors) {
     throw new Error(
       `Linear GraphQL error: ${json.errors.map((e) => e.message).join("; ")}`
     );
-  }
-  if (!res.ok) {
-    throw new Error(`Linear API error: ${res.status} ${JSON.stringify(json)}`);
   }
   return json.data as T;
 }
@@ -158,7 +159,7 @@ export async function fetchAndStoreLinearCycles(
     `query($teamId: String!) {
       team(id: $teamId) {
         id name key
-        cycles(first: 50, orderBy: createdAt) {
+        cycles(first: 50, orderBy: { field: createdAt, direction: Descending }) {
           nodes { id name number startsAt endsAt progress }
         }
       }

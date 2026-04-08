@@ -6,12 +6,17 @@ export function upsertDeployments(deployments: StoredDeployment[], dbPath?: stri
   if (deployments.length === 0) return;
   const db = getSharedDb(dbPath);
   const stmt = db.prepare(`
-    INSERT OR REPLACE INTO deployments
+    INSERT INTO deployments
       (id, repo, owner, environment, status, sha, ref, creator, description,
        caused_incident, created_at, completed_at, team, fetched_at)
     VALUES
       (@id, @repo, @owner, @environment, @status, @sha, @ref, @creator, @description,
        @caused_incident, @created_at, @completed_at, @team, @fetched_at)
+    ON CONFLICT(id) DO UPDATE SET
+      status=excluded.status, sha=excluded.sha, ref=excluded.ref,
+      creator=excluded.creator, description=excluded.description,
+      caused_incident=excluded.caused_incident, completed_at=excluded.completed_at,
+      team=excluded.team, fetched_at=excluded.fetched_at
   `);
   const insertMany = db.transaction((rows: StoredDeployment[]) => {
     for (const row of rows) {

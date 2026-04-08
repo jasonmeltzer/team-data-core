@@ -41,10 +41,10 @@ export async function fetchAndStorePRs(
     }
   );
 
-  // Cap at maxPRs and filter to lookback window
+  // Cap at maxPRs and filter to lookback window (match updated_at used by pagination + queries)
   const recentPulls = pulls
     .slice(0, maxPRs)
-    .filter((pr) => new Date(pr.created_at) >= since);
+    .filter((pr) => new Date(pr.updated_at) >= since);
 
   const fetchedAt = new Date().toISOString();
 
@@ -96,6 +96,7 @@ export async function fetchAndStorePRs(
         avatar_url: review.user.avatar_url ?? null,
         state: review.state,
         submitted_at: review.submitted_at,
+        fetched_at: fetchedAt,
       });
     }
   });

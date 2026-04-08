@@ -1,0 +1,38 @@
+[
+  {
+    "number": 42,
+    "title": "feat: add widget API",
+    "user": { "login": "alice" },
+    "state": "open",
+    "draft": false,
+    "created_at": "2026-04-01T10:00:00Z",
+    "updated_at": "2026-04-05T14:30:00Z",
+    "merged_at": null,
+    "closed_at": null,
+    "merge_commit_sha": null
+  },
+  {
+    "number": 41,
+    "title": "fix: resolve timeout bug",
+    "user": { "login": "bob" },
+    "state": "closed",
+    "draft": false,
+    "created_at": "2026-03-28T09:00:00Z",
+    "updated_at": "2026-04-03T16:00:00Z",
+    "merged_at": "2026-04-03T16:00:00Z",
+    "closed_at": "2026-04-03T16:00:00Z",
+    "merge_commit_sha": "abc123def456"
+  },
+  {
+    "number": 40,
+    "title": "chore: update deps",
+    "user": { "login": "charlie" },
+    "state": "closed",
+    "draft": false,
+    "created_at": "2026-03-25T08:00:00Z",
+    "updated_at": "2026-04-02T11:00:00Z",
+    "merged_at": null,
+    "closed_at": "2026-04-02T11:00:00Z",
+    "merge_commit_sha": null
+  }
+]

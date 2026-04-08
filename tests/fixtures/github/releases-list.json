@@ -1,0 +1,22 @@
+[
+  {
+    "id": 7001,
+    "tag_name": "v1.2.0",
+    "name": "Release v1.2.0",
+    "target_commitish": "main",
+    "draft": false,
+    "published_at": "2026-04-05T12:00:00Z",
+    "created_at": "2026-04-05T11:00:00Z",
+    "author": { "login": "alice" }
+  },
+  {
+    "id": 7002,
+    "tag_name": "v1.1.0",
+    "name": "Release v1.1.0",
+    "target_commitish": "main",
+    "draft": false,
+    "published_at": "2026-04-02T10:00:00Z",
+    "created_at": "2026-04-02T09:00:00Z",
+    "author": { "login": "bob" }
+  }
+]

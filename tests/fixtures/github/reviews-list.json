@@ -1,0 +1,14 @@
+[
+  {
+    "id": 9001,
+    "user": { "login": "dave", "avatar_url": "https://example.com/dave.png" },
+    "state": "APPROVED",
+    "submitted_at": "2026-04-04T10:00:00Z"
+  },
+  {
+    "id": 9002,
+    "user": { "login": "eve", "avatar_url": null },
+    "state": "CHANGES_REQUESTED",
+    "submitted_at": "2026-04-04T11:30:00Z"
+  }
+]

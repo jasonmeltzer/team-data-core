@@ -31,6 +31,7 @@ function makeReview(overrides: Partial<StoredReview> & Pick<StoredReview, "id" |
     avatar_url: null,
     state: "APPROVED",
     submitted_at: "2026-01-02T10:00:00Z",
+    fetched_at: "2026-01-02T12:00:00Z",
     ...overrides,
   };
 }
